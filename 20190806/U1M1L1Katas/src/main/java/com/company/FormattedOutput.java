@@ -3,6 +3,6 @@ package com.company;
 public class FormattedOutput {
 
     public static void main(String[] args) {
-        System.out.format("My name is %s and I am %d years old", "Timothy", 34);
+        System.out.format("My name is %s and I am %d years old", "Anna", 28);
     }
 }
