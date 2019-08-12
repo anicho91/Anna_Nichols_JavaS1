@@ -161,6 +161,7 @@ public class App {
 
     public static int[] lessThanFive(int[] myArray){
 
+        //initialize a variable to capture the number of numbers less than 5
         int number = 0;
         for(int j=0; j<myArray.length; j++){
             if (myArray[j]<5){
@@ -168,12 +169,17 @@ public class App {
             }
         }
 
+        //if no numbers less than 5 return null
         if (number<=0){
             return null;
         }else {
 
+            //if it has at least some numbers less than 5, it sets the newArr to the amount of numbers less than 5
             int[] newArr = new int[number];
 
+            //this should get any values less than 5, but if the number is greater than 5 it adds a zero to that place and moves to the next index
+            //so an array of 0 6 3 9 would become 0 0 3
+            //not sure how to fix this
             for (int i = 0; i < myArray.length; i++) {
                 if (myArray[i] < 5) {
                     newArr[i] = myArray[i];
