@@ -160,7 +160,6 @@ public class App {
     }
 
     public static int[] lessThanFive(int[] myArray){
-        int arrLength = myArray.length;
 
         int number = 0;
         for(int j=0; j<myArray.length; j++){
@@ -176,7 +175,7 @@ public class App {
             int[] newArr = new int[number];
 
             for (int i = 0; i < myArray.length; i++) {
-                if (i < 5) {
+                if (myArray[i] < 5) {
                     newArr[i] = myArray[i];
                 }
             }
