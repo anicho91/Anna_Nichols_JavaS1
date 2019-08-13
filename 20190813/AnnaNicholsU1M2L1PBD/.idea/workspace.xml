@@ -17,6 +17,7 @@
   </component>
   <component name="ProjectId" id="1PKcrbycR233ydncg9deKKENggy" />
   <component name="PropertiesComponent">
+    <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
@@ -35,16 +36,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.hiLoLimitedTries">
+  <component name="RunManager" selected="Application.modulusAnimation">
     <configuration name="dice" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dice" />
-      <module name="AnnaNicholsU1M2L1PBD" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="fortuneCookie" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="fortuneCookie" />
       <module name="AnnaNicholsU1M2L1PBD" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -64,6 +58,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="modulusAnimation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="modulusAnimation" />
+      <module name="AnnaNicholsU1M2L1PBD" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="numberGuessingCounter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="numberGuessingCounter" />
       <module name="AnnaNicholsU1M2L1PBD" />
@@ -73,11 +74,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.modulusAnimation" />
         <item itemvalue="Application.hiLoLimitedTries" />
         <item itemvalue="Application.numberGuessingCounter" />
         <item itemvalue="Application.keepGuessing" />
         <item itemvalue="Application.dice" />
-        <item itemvalue="Application.fortuneCookie" />
       </list>
     </recent_temporary>
   </component>
