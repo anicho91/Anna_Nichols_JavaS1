@@ -1,0 +1,5 @@
+public interface ConverterIf {
+    if(){
+
+    }
+}
