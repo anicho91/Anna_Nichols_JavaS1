@@ -1,0 +1,373 @@
+[
+  {
+    "color": "Black",
+    "make": "MITSUBISHI",
+    "miles": 120000,
+    "model": "i-MiEV",
+    "year": 2012
+  },
+  {
+    "color": "Red",
+    "make": "NISSAN",
+    "miles": 45000,
+    "model": "LEAF",
+    "year": 2012
+  },
+  {
+    "color": "Green",
+    "make": "FORD",
+    "miles": 45000,
+    "model": "FOCUS ELECTRIC",
+    "year": 2013
+  },
+  {
+    "color": "Green",
+    "make": "MITSUBISHI",
+    "miles": 45000,
+    "model": "i-MiEV",
+    "year": 2013
+  },
+  {
+    "color": "Green",
+    "make": "NISSAN",
+    "miles": 1000,
+    "model": "LEAF",
+    "year": 2013
+  },
+  {
+    "color": "Green",
+    "make": "SMART",
+    "miles": 1000,
+    "model": "FORTWO ELECTRIC DRIVE CABRIOLET",
+    "year": 2013
+  },
+  {
+    "color": "Green",
+    "make": "SMART",
+    "miles": 1000,
+    "model": "FORTWO ELECTRIC DRIVE COUPE",
+    "year": 2013
+  },
+  {
+    "color": "Green",
+    "make": "TESLA",
+    "miles": 45000,
+    "model": "MODEL S (40 kWh battery)",
+    "year": 2013
+  },
+  {
+    "color": "Green",
+    "make": "TESLA",
+    "miles": 90000,
+    "model": "MODEL S (60 kWh battery)",
+    "year": 2013
+  },
+  {
+    "color": "Green",
+    "make": "TESLA",
+    "miles": 90000,
+    "model": "MODEL S (85 kWh battery)",
+    "year": 2013
+  },
+  {
+    "color": "Green",
+    "make": "TESLA",
+    "miles": 90000,
+    "model": "MODEL S PERFORMANCE",
+    "year": 2013
+  },
+  {
+    "color": "Green",
+    "make": "CHEVROLET",
+    "miles": 90000,
+    "model": "SPARK EV",
+    "year": 2014
+  },
+  {
+    "color": "Green",
+    "make": "FORD",
+    "miles": 90000,
+    "model": "FOCUS ELECTRIC",
+    "year": 2014
+  },
+  {
+    "color": "Green",
+    "make": "MITSUBISHI",
+    "miles": 90000,
+    "model": "i-MiEV",
+    "year": 2014
+  },
+  {
+    "color": "Green",
+    "make": "NISSAN",
+    "miles": 90000,
+    "model": "LEAF",
+    "year": 2014
+  },
+  {
+    "color": "Green",
+    "make": "SMART",
+    "miles": 90000,
+    "model": "FORTWO ELECTRIC DRIVE CABRIOLET",
+    "year": 2014
+  },
+  {
+    "color": "Green",
+    "make": "SMART",
+    "miles": 90000,
+    "model": "FORTWO ELECTRIC DRIVE COUPE",
+    "year": 2014
+  },
+  {
+    "color": "Green",
+    "make": "TESLA",
+    "miles": 90000,
+    "model": "MODEL S (60 kWh battery)",
+    "year": 2014
+  },
+  {
+    "color": "Green",
+    "make": "TESLA",
+    "miles": 90000,
+    "model": "MODEL S (85 kWh battery)",
+    "year": 2014
+  },
+  {
+    "color": "Green",
+    "make": "TESLA",
+    "miles": 45000,
+    "model": "MODEL S PERFORMANCE",
+    "year": 2014
+  },
+  {
+    "color": "Green",
+    "make": "BMW",
+    "miles": 45000,
+    "model": "i3",
+    "year": 2015
+  },
+  {
+    "color": "Green",
+    "make": "CHEVROLET",
+    "miles": 45000,
+    "model": "SPARK EV",
+    "year": 2015
+  },
+  {
+    "color": "Green",
+    "make": "FORD",
+    "miles": 45000,
+    "model": "FOCUS ELECTRIC",
+    "year": 2015
+  },
+  {
+    "color": "Green",
+    "make": "KIA",
+    "miles": 45000,
+    "model": "SOUL EV",
+    "year": 2015
+  },
+  {
+    "color": "Green",
+    "make": "MITSUBISHI",
+    "miles": 45000,
+    "model": "i-MiEV",
+    "year": 2015
+  },
+  {
+    "color": "Green",
+    "make": "NISSAN",
+    "miles": 45000,
+    "model": "LEAF",
+    "year": 2015
+  },
+  {
+    "color": "Blue",
+    "make": "SMART",
+    "miles": 45000,
+    "model": "FORTWO ELECTRIC DRIVE CABRIOLET",
+    "year": 2015
+  },
+  {
+    "color": "Blue",
+    "make": "SMART",
+    "miles": 45000,
+    "model": "FORTWO ELECTRIC DRIVE COUPE",
+    "year": 2015
+  },
+  {
+    "color": "Blue",
+    "make": "TESLA",
+    "miles": 45000,
+    "model": "MODEL S (60 kWh battery)",
+    "year": 2015
+  },
+  {
+    "color": "Red",
+    "make": "TESLA",
+    "miles": 60000,
+    "model": "MODEL S (70 kWh battery)",
+    "year": 2015
+  },
+  {
+    "color": "Red",
+    "make": "TESLA",
+    "miles": 60000,
+    "model": "MODEL S (85/90 kWh battery)",
+    "year": 2015
+  },
+  {
+    "color": "Red",
+    "make": "TESLA",
+    "miles": 60000,
+    "model": "MODEL S 70D",
+    "year": 2015
+  },
+  {
+    "color": "Red",
+    "make": "TESLA",
+    "miles": 60000,
+    "model": "MODEL S 85D/90D",
+    "year": 2015
+  },
+  {
+    "color": "Red",
+    "make": "TESLA",
+    "miles": 60000,
+    "model": "MODEL S P85D/P90D",
+    "year": 2015
+  },
+  {
+    "color": "Red",
+    "make": "BMW",
+    "miles": 60000,
+    "model": "i3",
+    "year": 2016
+  },
+  {
+    "color": "Red",
+    "make": "CHEVROLET",
+    "miles": 60000,
+    "model": "SPARK EV",
+    "year": 2016
+  },
+  {
+    "color": "Red",
+    "make": "FORD",
+    "miles": 60000,
+    "model": "FOCUS ELECTRIC",
+    "year": 2016
+  },
+  {
+    "color": "Red",
+    "make": "KIA",
+    "miles": 60000,
+    "model": "SOUL EV",
+    "year": 2016
+  },
+  {
+    "color": "Red",
+    "make": "MITSUBISHI",
+    "miles": 45000,
+    "model": "i-MiEV",
+    "year": 2016
+  },
+  {
+    "color": "Red",
+    "make": "NISSAN",
+    "miles": 45000,
+    "model": "LEAF (24 kWh battery)",
+    "year": 2016
+  },
+  {
+    "color": "Red",
+    "make": "NISSAN",
+    "miles": 45000,
+    "model": "LEAF (30 kWh battery)",
+    "year": 2016
+  },
+  {
+    "color": "Red",
+    "make": "SMART",
+    "miles": 12000,
+    "model": "FORTWO ELECTRIC DRIVE CABRIOLET",
+    "year": 2016
+  },
+  {
+    "color": "Red",
+    "make": "SMART",
+    "miles": 12000,
+    "model": "FORTWO ELECTRIC DRIVE COUPE",
+    "year": 2016
+  },
+  {
+    "color": "Red",
+    "make": "TESLA",
+    "miles": 12000,
+    "model": "MODEL S (60 kWh battery)",
+    "year": 2016
+  },
+  {
+    "color": "Red",
+    "make": "TESLA",
+    "miles": 12000,
+    "model": "MODEL S (70 kWh battery)",
+    "year": 2016
+  },
+  {
+    "color": "Red",
+    "make": "TESLA",
+    "miles": 12000,
+    "model": "MODEL S (85/90 kWh battery)",
+    "year": 2016
+  },
+  {
+    "color": "Red",
+    "make": "TESLA",
+    "miles": 12000,
+    "model": "MODEL S 70D",
+    "year": 2016
+  },
+  {
+    "color": "Red",
+    "make": "TESLA",
+    "miles": 12000,
+    "model": "MODEL S 85D/90D",
+    "year": 2016
+  },
+  {
+    "color": "Red",
+    "make": "TESLA",
+    "miles": 12000,
+    "model": "MODEL S 90D (Refresh)",
+    "year": 2016
+  },
+  {
+    "color": "Gray",
+    "make": "TESLA",
+    "miles": 12000,
+    "model": "MODEL S P85D/P90D",
+    "year": 2016
+  },
+  {
+    "color": "Gray",
+    "make": "TESLA",
+    "miles": 12000,
+    "model": "MODEL S P90D (Refresh)",
+    "year": 2016
+  },
+  {
+    "color": "Gray",
+    "make": "TESLA",
+    "miles": 12000,
+    "model": "MODEL X 90D",
+    "year": 2016
+  },
+  {
+    "color": "Gray",
+    "make": "TESLA",
+    "miles": 45000,
+    "model": "MODEL X P90D",
+    "year": 2016
+  }
+]
