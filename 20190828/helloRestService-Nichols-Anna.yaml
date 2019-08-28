@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  title: Hello Rest Service
+  description: A simple service that allows a GET operation
+  version: 0.0.1
+servers: 
+  - url: http://localhost:8080
+    description: Local dev server
+    
+paths:
+  /hello/{name}:
+
+    get:
+      summary: Retrieves the entry for the name
+      parameters: 
+        - name: name
+          in: path
+          required: true
+          description: Name you'd like to get
+          schema:
+            type: string
+            format: string
+      responses:
+        '200':
+          description: Hello ${name}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Name'
+                
+components:
+  schemas:
+    Name:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+      required:
+        - name

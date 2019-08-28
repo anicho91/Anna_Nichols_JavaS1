@@ -1,0 +1,119 @@
+openapi: 3.0.0
+info:
+  title: Rest Calculator
+  description: A simple service that allows multiple post methods
+  version: 0.0.1
+servers: 
+  - url: http://localhost:8080
+    description: Local dev server
+    
+paths:
+  /add:
+
+    post:
+      summary: Posts addition
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                operand1:
+                  type: integer
+                operand2:
+                  type: integer
+                
+      responses:
+        '200':
+          description: Addition of operand1 & operand2
+          content:
+            application/json:
+              schema:
+                type: integer
+                example: operand1 + operand2
+
+  /mult:
+
+    post:
+      summary: Posts multiplication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                operand1:
+                  type: integer
+                operand2:
+                  type: integer
+                
+      responses:
+        '200':
+          description: Multiplication of operand1 & operand2
+          content:
+            application/json:
+              schema:
+                type: integer
+                example: operand1 * operand2
+                
+  /subtract:
+
+    post:
+      summary: Posts subtraction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                operand1:
+                  type: integer
+                operand2:
+                  type: integer
+                
+      responses:
+        '200':
+          description: Subtraction of operand1 & operand2
+          content:
+            application/json:
+              schema:
+                type: integer
+                example: operand1 - operand2
+                
+  /divide:
+
+    post:
+      summary: Posts division
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                operand1:
+                  type: integer
+                operand2:
+                  type: integer
+                
+      responses:
+        '200':
+          description: division of operand1 & operand2
+          content:
+            application/json:
+              schema:
+                type: integer
+                example: operand1 / operand2
+                
+                

@@ -1,0 +1,95 @@
+openapi: 3.0.0
+info:
+  title: Rest Weather
+  description: A simple service that allows two get methods
+  version: 0.0.1
+servers: 
+  - url: http://localhost:8080
+    description: Local dev server
+    
+paths:
+  /temp/{zipcode}:
+    get:
+      summary: Gets Temp for ZipCode
+      parameters: 
+        - name: zipcode
+          in: path
+          required: true
+          description: Zipcode for weather you'd like to retrieve
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+              fahrenheit:
+                type: integer
+              celcius:
+                type: integer
+      responses:
+        '200':
+          description: successfully retrieved temps
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  fahrenheit:
+                    type: integer
+                  celcius:
+                    type: integer
+  /conditions/{zipcode}:
+    get:
+      summary: Gets Conditions for ZipCode
+      parameters: 
+        - name: zipcode
+          in: path
+          required: true
+          description: Zipcode for weather you'd like to retrieve
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+              temperature:
+                type: object
+                properties:
+                  fahrenheit:
+                    type: integer
+                  celcius:
+                    type: integer
+              windspeed:
+                type: integer
+              winddirection:
+                type: string
+              skies:
+                type: string
+              precipitation:
+                type: string
+      responses:
+        '200':
+          description: successfully retrieved conditions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  temperature:
+                    type: object
+                    properties:
+                      fahrenheit:
+                        type: integer
+                      celcius:
+                        type: integer
+                  windspeed:
+                    type: integer
+                  winddirection:
+                    type: string
+                  skies:
+                    type: string
+                  precipitation:
+                    type: string 
+  
