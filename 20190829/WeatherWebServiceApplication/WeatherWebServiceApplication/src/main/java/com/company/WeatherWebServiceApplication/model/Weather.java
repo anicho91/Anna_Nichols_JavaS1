@@ -1,22 +1,30 @@
 package com.company.WeatherWebServiceApplication.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Weather {
 
-    private List<Temperature> temperatureList;
+    private Number fahrenheit;
+    private Number celsius;
     private int windSpeed;
     private String windDirection;
     private String skies;
     private int precipitation;
 
-    public List<Temperature> getTemperatureList() {
-        return temperatureList;
+    public Number getFahrenheit() {
+        return fahrenheit;
     }
 
-    public void setTemperatureList(int int1, int int2) {
-        this.temperatureList = temperatureList;
+    public void setFahrenheit(Number fahrenheit) {
+        this.fahrenheit = fahrenheit;
+    }
+
+    public Number getCelsius() {
+        return celsius;
+    }
+
+    public void setCelsius(Number celsius) {
+        this.celsius = celsius;
     }
 
     public int getWindSpeed() {
@@ -50,5 +58,6 @@ public class Weather {
     public void setPrecipitation(int precipitation) {
         this.precipitation = precipitation;
     }
+
 
 }

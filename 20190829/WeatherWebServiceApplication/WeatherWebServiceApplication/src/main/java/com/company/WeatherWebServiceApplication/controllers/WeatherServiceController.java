@@ -11,6 +11,11 @@ public class WeatherServiceController {
     @RequestMapping(value = "/temp/{zipcode}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public Temperature getTemperature(@PathVariable int zipcode){
+
+        if(zipcode == 0){
+            throw new IllegalArgumentException();
+        }
+
         Temperature newTemp = new Temperature();
         newTemp.setFahrenheit(85);
         newTemp.setCelsius(30);
@@ -22,8 +27,8 @@ public class WeatherServiceController {
     @ResponseStatus(value = HttpStatus.OK)
     public Weather getWeather(@PathVariable int zipcode){
         Weather newWeather = new Weather();
-
-        newWeather.setTemperatureList(85, 30);
+        newWeather.setFahrenheit(80);
+        newWeather.setCelsius(35);
         newWeather.setWindSpeed(5);
         newWeather.setWindDirection("West");
         newWeather.setSkies("Cloudy");

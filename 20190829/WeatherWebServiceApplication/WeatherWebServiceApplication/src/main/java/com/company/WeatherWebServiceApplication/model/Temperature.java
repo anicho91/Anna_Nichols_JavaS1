@@ -1,5 +1,8 @@
 package com.company.WeatherWebServiceApplication.model;
 
+import javax.validation.constraints.NotEmpty;
+import java.util.List;
+
 public class Temperature {
     private int fahrenheit;
     private int celsius;
