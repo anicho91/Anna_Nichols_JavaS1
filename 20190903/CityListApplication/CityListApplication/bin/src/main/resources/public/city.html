@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+        <form action="#" th:action="@{/city}" th:object="${city}" method="post">
+            <table>
+                <tr>
+                    <td>City:</td>
+                    <td><input type="text" th:field="*{name}"></td>
+                </tr>
+                <tr>
+                    <td>State:</td>
+                    <td><input type="text" th:field="*{state}"></td>
+                </tr>
+                <tr>
+                    <td>Population:</td>
+                    <td><input type="text" th:field="*{population}"></td>
+                </tr>
+                <tr>
+                    <td>Is this city the capital?:</td>
+                    <td><input type="checkbox" th:field="*{isCapital}"></td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Submit</button></td>
+                </tr>
+            </table>
+        </form>
+
+        <table>
+            <tr>
+                <td>City:</td>
+                <td>${name}</td>
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td>${state}</td>
+            </tr>
+            <tr>
+                <td>Population:</td>
+                <td>${population}</td>
+            </tr>
+            <tr>
+                <td>Capital?</td>
+                <td>${isCapital}</td>
+            </tr>
+        </table>
+
+</body>
+</html>
