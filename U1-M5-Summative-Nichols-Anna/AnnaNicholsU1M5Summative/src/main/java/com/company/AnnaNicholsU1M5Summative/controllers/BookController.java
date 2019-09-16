@@ -57,6 +57,11 @@ public class BookController {
     public void updateBook(@PathVariable int bookId, @RequestBody Book book) {
 
         book = bookDao.getBook(bookId);
+        book.setIsbn(book.getIsbn());
+        book.setPublishDate(book.getPublishDate());
+        book.setAuthorId(book.getAuthorId());
+        book.setTitle(book.getTitle());
+        book.setPublisherId(book.getPublisherId());
 
         bookDao.updateBook(book);
     }

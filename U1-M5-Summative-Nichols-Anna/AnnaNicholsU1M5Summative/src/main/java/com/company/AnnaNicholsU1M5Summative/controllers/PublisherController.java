@@ -49,6 +49,15 @@ public class PublisherController {
     @ResponseStatus(value = HttpStatus.OK)
     public void updatePublisher(@PathVariable int publisherId, @RequestBody Publisher publisher) {
 
+        publisher = publisherDao.getPublisher(publisherId);
+        publisher.setName(publisher.getName());
+        publisher.setStreet(publisher.getStreet());
+        publisher.setCity(publisher.getStreet());
+        publisher.setState(publisher.getState());
+        publisher.setPostalCode(publisher.getPostalCode());
+        publisher.setPhone(publisher.getPhone());
+        publisher.setEmail(publisher.getEmail());
+
         publisherDao.updatePublisher(publisher);
     }
     

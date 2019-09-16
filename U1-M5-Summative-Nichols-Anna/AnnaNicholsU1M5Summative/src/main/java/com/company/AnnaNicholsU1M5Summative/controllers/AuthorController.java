@@ -49,6 +49,16 @@ public class AuthorController {
     @ResponseStatus(value = HttpStatus.OK)
     public void updateAuthor(@PathVariable int authorId, @RequestBody Author author) {
 
+        author = authorDao.getAuthor(authorId);
+        author.setFirstName(author.getFirstName());
+        author.setLastName(author.getLastName());
+        author.setStreet(author.getStreet());
+        author.setCity(author.getStreet());
+        author.setState(author.getState());
+        author.setPostalCode(author.getPostalCode());
+        author.setPhone(author.getPhone());
+        author.setEmail(author.getEmail());
+
         authorDao.updateAuthor(author);
     }
     
