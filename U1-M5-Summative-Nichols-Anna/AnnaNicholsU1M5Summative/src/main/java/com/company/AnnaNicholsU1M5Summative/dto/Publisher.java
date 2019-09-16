@@ -3,11 +3,12 @@ package com.company.AnnaNicholsU1M5Summative.dto;
 import java.util.Objects;
 
 public class Publisher {
+
     private int id;
     private String name;
     private String street;
     private String city;
-    private char state;
+    private String state;
     private String postalCode;
     private String phone;
     private String email;
@@ -44,11 +45,11 @@ public class Publisher {
         this.city = city;
     }
 
-    public char getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(char state) {
+    public void setState(String state) {
         this.state = state;
     }
 
@@ -82,10 +83,10 @@ public class Publisher {
         if (o == null || getClass() != o.getClass()) return false;
         Publisher publisher = (Publisher) o;
         return id == publisher.id &&
-                state == publisher.state &&
                 Objects.equals(name, publisher.name) &&
                 Objects.equals(street, publisher.street) &&
                 Objects.equals(city, publisher.city) &&
+                Objects.equals(state, publisher.state) &&
                 Objects.equals(postalCode, publisher.postalCode) &&
                 Objects.equals(phone, publisher.phone) &&
                 Objects.equals(email, publisher.email);

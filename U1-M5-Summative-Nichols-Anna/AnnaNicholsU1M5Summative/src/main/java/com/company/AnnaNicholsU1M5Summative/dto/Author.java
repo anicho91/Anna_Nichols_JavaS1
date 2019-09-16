@@ -8,7 +8,7 @@ public class Author {
     private String lastName;
     private String street;
     private String city;
-    private char state;
+    private String state;
     private String postalCode;
     private String phone;
     private String email;
@@ -53,11 +53,11 @@ public class Author {
         this.city = city;
     }
 
-    public Character getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(Character state) {
+    public void setState(String state) {
         this.state = state;
     }
 

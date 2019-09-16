@@ -1,6 +1,7 @@
 package com.company.AnnaNicholsU1M5Summative.dao;
 
 import com.company.AnnaNicholsU1M5Summative.dto.Book;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface BookDao {
 
     List<Book> getAllBooks();
 
-    List<Book> getBookByAuthor();
+    List<Book> getBookByAuthor(int authorId);
 
     void updateBook(Book book);
 

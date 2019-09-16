@@ -1,13 +1,13 @@
 package com.company.AnnaNicholsU1M5Summative.dto;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Book {
     private int id;
     private String isbn;
-    private Date publishDate;
+    private LocalDate publishDate;
     private int authorId;
     private String title;
     private int publisherId;
@@ -29,11 +29,11 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public Date getPublishDate() {
+    public LocalDate getPublishDate() {
         return publishDate;
     }
 
-    public void setPublishDate(Date publishDate) {
+    public void setPublishDate(LocalDate publishDate) {
         this.publishDate = publishDate;
     }
 
