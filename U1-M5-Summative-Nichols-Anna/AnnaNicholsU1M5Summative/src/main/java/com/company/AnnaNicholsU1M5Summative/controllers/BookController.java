@@ -45,6 +45,13 @@ public class BookController {
         bookDao.deleteBook(bookId);
     }
 
+    @RequestMapping(value = "/book/{authorId}", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<Book> getBookByAuthor(@PathVariable int authorId) {
+        return bookDao.getBookByAuthor(authorId);
+    }
+
+
     @RequestMapping(value = "/book/{bookId}", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.OK)
     public void updateBook(@PathVariable int bookId, @RequestBody Book book) {
