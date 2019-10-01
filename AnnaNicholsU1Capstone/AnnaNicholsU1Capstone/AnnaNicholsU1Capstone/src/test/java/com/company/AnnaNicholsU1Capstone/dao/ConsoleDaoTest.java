@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.xml.soap.Node;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -39,6 +40,8 @@ public class ConsoleDaoTest {
 
         List<TShirt> tShirts = tShirtDao.getAllTShirts();
         tShirts.stream().forEach(TShirt -> tShirtDao.deleteTShirt(TShirt.getId()));
+
+
     }
 
     @Test
