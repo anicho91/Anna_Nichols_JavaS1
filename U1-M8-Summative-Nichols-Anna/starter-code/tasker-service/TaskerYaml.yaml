@@ -1,0 +1,144 @@
+openapi: 3.0.0
+info:
+  title: Rest Web Service
+  description:
+    A simple service that allows CRUD operations for a Task system.
+  version: 0.0.1
+servers:
+  - url: 'http://localhost:7090'
+    description: Local dev server
+paths:
+  /tasks:
+    post:
+      summary: Creates a new Task entry with the given information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '201':
+          description: A Task object created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          description: Invalid request syntax.
+        '422':
+          description: Incomplete task information. Some required fields missing.
+          
+    get:
+      summary: Retrieves a list of tasks
+      responses:
+        '200':
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+      
+          
+  /task{taskId}:
+    # GET, DELETE, and PUT are all under this path entry
+    get:
+      summary: Retrieves the entry for the task with the give ID.
+      parameters: 
+        - name: taskId
+          in: path
+          required: true
+          description: ID of the task to retrieve.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: Task object matching given ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+      
+    delete:
+      summary: Deletes the entry for the task with the given ID.
+      parameters: 
+        - name: taskId
+          in: path
+          required: true
+          description: ID of the task you would like to delete.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: Task successfully deleted.
+          
+    put:
+      summary: Updated the entry for the task with the given ID.
+      parameters: 
+        - name: taskId
+          in: path
+          required: true
+          description: ID of the task you would like to update.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '200':
+          description: Task successfully updated.
+        '422':
+          description: Task ID on path mush match the ID in the Task object.
+
+  /task/category/{category}:
+    get:
+      summary: Retrieves the entry for the task with the give category.
+      parameters: 
+        - name: category
+          in: path
+          required: true
+          description: category of the task to retrieve.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: Task objects matching given category.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+          
+components:
+  schemas:
+    Task:
+      properties:
+        id:
+          type: integer
+        taskDescription:
+          type: string
+        createDate:
+          type: date
+        dueDate:
+          type: date
+        category:
+          type: string
+        Advertisement:
+          type: string
+      required: 
+        - taskDescription
+        - createDate
+        - dueDate
+        - category
