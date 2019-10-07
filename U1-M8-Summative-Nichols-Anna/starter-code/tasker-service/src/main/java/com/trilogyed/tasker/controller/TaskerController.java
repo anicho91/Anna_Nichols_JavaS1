@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -26,7 +27,7 @@ public class TaskerController {
 
 
     @RequestMapping(value="/tasks", method = RequestMethod.POST)
-    public TaskViewModel postTask(@RequestBody TaskViewModel taskViewModel){
+    public TaskViewModel postTask(@Valid @RequestBody TaskViewModel taskViewModel){
 
         return service.newTask(taskViewModel);
 
@@ -40,18 +41,18 @@ public class TaskerController {
     }
 
     @RequestMapping(value = "/tasks/{id}", method = RequestMethod.GET)
-    public TaskViewModel getTaskById(@PathVariable int id){
+    public TaskViewModel getTaskById(@Valid @PathVariable int id){
 
         return service.fetchTask(id);
     }
 
     @RequestMapping(value = "/tasks/category/{category}", method = RequestMethod.GET)
-    public List<TaskViewModel> getTaskByCategory(@PathVariable String category){
+    public List<TaskViewModel> getTaskByCategory(@Valid @PathVariable String category){
         return service.fetchTasksByCategory(category);
     }
 
     @RequestMapping(value = "/tasks", method = RequestMethod.PUT)
-    public void updateTask(@RequestBody TaskViewModel taskViewModel){
+    public void updateTask(@Valid @RequestBody TaskViewModel taskViewModel){
 
         service.updateTask(taskViewModel);
     }
