@@ -41,16 +41,22 @@ public class TaskerController {
 
     @RequestMapping(value = "/tasks/{id}", method = RequestMethod.GET)
     public TaskViewModel getTaskById(@PathVariable int id){
+
         return service.fetchTask(id);
     }
 
-    @RequestMapping(value = "/tasks/{id}", method = RequestMethod.PUT)
-    public void updateTask(@PathVariable int id, @RequestBody TaskViewModel taskViewModel){
-        service.fetchTask(id);
+    @RequestMapping(value = "/tasks/category/{category}", method = RequestMethod.GET)
+    public List<TaskViewModel> getTaskByCategory(@PathVariable String category){
+        return service.fetchTasksByCategory(category);
+    }
+
+    @RequestMapping(value = "/tasks", method = RequestMethod.PUT)
+    public void updateTask(@RequestBody TaskViewModel taskViewModel){
+
         service.updateTask(taskViewModel);
     }
 
-    @RequestMapping(value = "/tasks{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/tasks/{id}", method = RequestMethod.DELETE)
     public void deleteTask(@PathVariable int id) {
         service.deleteTask(id);
     }
