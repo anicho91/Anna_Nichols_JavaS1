@@ -1,13 +1,22 @@
 package com.trilogyed.comment.model;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public class Comment {
 
     private int commentId;
+    @NotNull
     private int postId;
+    @NotNull
     private LocalDate createDate;
+    @NotEmpty
+    @Max(50)
     private String commenterName;
+    @NotEmpty
+    @Max(255)
     private String comment;
 
     public int getCommentId() {

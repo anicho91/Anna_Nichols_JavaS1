@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -17,7 +18,7 @@ public class CommentController {
 
     @RequestMapping(value = "/comments", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public Comment createComment(@RequestBody Comment comment) {
+    public Comment createComment(@Valid @RequestBody Comment comment) {
 
         return dao.addComment(comment);
     }
@@ -29,7 +30,7 @@ public class CommentController {
     }
 
     @RequestMapping(value = "/comments/posts/{postid}", method = RequestMethod.GET)
-    public List<Comment> getCommentsByPost(@PathVariable int postid){
+    public List<Comment> getCommentsByPost(@Valid @PathVariable int postid){
         return dao.getCommentsByPost(postid);
     }
 
@@ -40,7 +41,7 @@ public class CommentController {
     }
 
     @RequestMapping(value = "/comments", method = RequestMethod.PUT)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     public void updateComment(@RequestBody Comment comment) {
 
         dao.updateComment(comment);
@@ -48,8 +49,8 @@ public class CommentController {
     }
 
     @RequestMapping(value = "/comments/{id}", method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteComment(@PathVariable int id) {
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteComment(@Valid @PathVariable int id) {
 
         dao.deleteComment(id);
 

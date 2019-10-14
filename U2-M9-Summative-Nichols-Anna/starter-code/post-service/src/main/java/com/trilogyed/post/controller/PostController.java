@@ -39,14 +39,14 @@ public class PostController {
     }
 
     @RequestMapping(value = "/posts", method = RequestMethod.PUT)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     public void updatePost(@RequestBody Post post) {
 
         dao.updatePost(post);
     }
 
     @RequestMapping(value = "/posts/{id}", method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     public void deletePost(@PathVariable int id) {
 
         dao.deletePost(id);

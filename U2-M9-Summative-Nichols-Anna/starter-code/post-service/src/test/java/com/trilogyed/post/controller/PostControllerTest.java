@@ -138,7 +138,7 @@ public class PostControllerTest {
                 .content(outputJson)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().isNoContent());
+                .andExpect(status().isOk());
 
     }
 
@@ -146,7 +146,7 @@ public class PostControllerTest {
     public void deletePost() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.delete("/posts/1"))
                 .andDo(print())
-                .andExpect(status().isNoContent())
+                .andExpect(status().isOk())
                 .andExpect(content().string(""));
     }
 }

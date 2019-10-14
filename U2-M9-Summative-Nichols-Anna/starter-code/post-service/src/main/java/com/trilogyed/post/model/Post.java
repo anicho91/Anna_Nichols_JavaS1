@@ -1,12 +1,21 @@
 package com.trilogyed.post.model;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public class Post {
 
+
     private int postID;
+    @NotNull
     private LocalDate postDate;
+    @NotEmpty
+    @Max(50)
     private String posterName;
+    @NotEmpty
+    @Max(255)
     private String post;
 
     public int getPostID() {
