@@ -1,0 +1,92 @@
+openapi: 3.0.0
+info:
+  title: Rest Web Service
+  description:
+    A simple service that allows CRUD operations for a Post system.
+  version: 0.0.1
+servers:
+  - url: 'http://localhost:7090'
+    description: Local dev server
+paths:
+  /posts:
+    post:
+      summary: Creates a new Post entry with the given information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+      responses:
+        '201':
+          description: A Post object created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '400':
+          description: Invalid request syntax.
+        '422':
+          description: Incomplete post information. Some required fields missing.
+
+
+  /post/{postId}:
+    # GET, DELETE, and PUT are all under this path entry
+    get:
+      summary: Retrieves the entry for the post with the give ID.
+      parameters: 
+        - name: postId
+          in: path
+          required: true
+          description: ID of the post to retrieve.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: Post object matching given ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+
+  /post/user/{poster_name}:
+    get:
+      summary: Retrieves the entry for the post with the give category.
+      parameters: 
+        - name: category
+          in: path
+          required: true
+          description: category of the post to retrieve.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: Post objects matching given category.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+
+components:
+  schemas:
+    Post:
+      properties:
+        id:
+          type: integer
+        postContent:
+          type: string
+        postDate:
+          type: date
+        posterName:
+          type: date
+        comments:
+          type: list
+      required: 
+        - postContent
+        - postDate
+        - posterName
+        - comments 
