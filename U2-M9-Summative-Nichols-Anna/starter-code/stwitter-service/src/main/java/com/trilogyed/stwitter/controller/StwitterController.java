@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,21 +21,22 @@ public class StwitterController {
     ServiceLayer service;
 
     @CachePut(key = "#result.getPostId()")
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public PostViewModel createPost(@RequestBody PostViewModel post){
+    public PostViewModel createPost(@Valid @RequestBody PostViewModel post ){
 
         return service.addPostVm(post);
     }
 
     @Cacheable
     @GetMapping("/{id}")
-    public PostViewModel getPostById(@PathVariable int postId){
+    public PostViewModel getPostById(@Valid @PathVariable int id ){
 
-        return service.getPostVm(postId);
+        return service.getPostVm(id);
     }
 
     @GetMapping("/user/{poster_name}")
-    public PostViewModel getPostByPosters(@PathVariable String poster_name){
+    public PostViewModel getPostByPosters(@Valid @PathVariable String poster_name){
 
         return service.getPostByPosters(poster_name);
     }

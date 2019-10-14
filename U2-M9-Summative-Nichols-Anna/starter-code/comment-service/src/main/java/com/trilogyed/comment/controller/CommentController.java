@@ -4,6 +4,7 @@ import com.trilogyed.comment.dao.CommentDao;
 import com.trilogyed.comment.dao.CommentDaoJdbcTemplate;
 import com.trilogyed.comment.model.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class CommentController {
     CommentDao dao;
 
     @RequestMapping(value = "/comments", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
     public Comment createComment(@RequestBody Comment comment) {
 
         return dao.addComment(comment);
@@ -26,6 +28,11 @@ public class CommentController {
         return dao.getAllComments();
     }
 
+    @RequestMapping(value = "/comments/posts/{postid}", method = RequestMethod.GET)
+    public List<Comment> getCommentsByPost(@PathVariable int postid){
+        return dao.getCommentsByPost(postid);
+    }
+
     @RequestMapping(value = "/comments/{id}", method = RequestMethod.GET)
     public Comment getComment(@PathVariable int id) {
 
@@ -33,6 +40,7 @@ public class CommentController {
     }
 
     @RequestMapping(value = "/comments", method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateComment(@RequestBody Comment comment) {
 
         dao.updateComment(comment);
@@ -40,6 +48,7 @@ public class CommentController {
     }
 
     @RequestMapping(value = "/comments/{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteComment(@PathVariable int id) {
 
         dao.deleteComment(id);

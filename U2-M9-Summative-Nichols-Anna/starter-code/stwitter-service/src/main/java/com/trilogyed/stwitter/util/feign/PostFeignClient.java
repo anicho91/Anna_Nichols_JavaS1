@@ -5,6 +5,7 @@ import com.trilogyed.stwitter.viewmodel.PostViewModel;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @FeignClient(name = "post-service")
 public interface PostFeignClient {
@@ -14,4 +15,5 @@ public interface PostFeignClient {
 
     @GetMapping("post/user/{poster_name}")
     public Post getPostByPoster(@PathVariable String poster_name);
+
 }

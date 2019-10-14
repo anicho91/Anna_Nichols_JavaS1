@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -46,7 +47,7 @@ public class ServiceLayer {
     public PostViewModel getPostVm(int id){
 
         Post post = pFeign.getPost(id);
-        List<Comment> comments = cFeign.getCommentByPost(id);
+        List<Comment> comments = cFeign.getCommentsByPost(id);
 
         PostViewModel pvm = new PostViewModel();
         pvm.setPostId(post.getPostID());
@@ -62,7 +63,7 @@ public class ServiceLayer {
     public PostViewModel getPostByPosters(String poster_name){
 
         Post post = pFeign.getPostByPoster(poster_name);
-        List<Comment> comments = cFeign.getCommentByPost(post.getPostID());
+        List<Comment> comments = cFeign.getCommentsByPost(post.getPostID());
 
         PostViewModel pvm = new PostViewModel();
         pvm.setPostId(post.getPostID());

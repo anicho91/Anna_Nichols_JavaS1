@@ -13,20 +13,23 @@ import java.util.List;
 @Repository
 public class PostDaoJdbcTemplate implements PostDao{
 
-    private static final String INSERT_CONSOLE_SQL =
+    private static final String INSERT_POST_SQL =
             "Insert into post(post_date, poster_name, post) Values (?,?,?)";
 
-    private static final String SELECT_CONSOLE_SQL =
+    private static final String SELECT_POST_SQL =
             "Select * From post where post_id = ?";
 
-    private static final String SELECT_ALL_CONSOLES_SQL =
+    private static final String SELECT_ALL_POSTS_SQL =
             "Select * From post";
 
-    private static final String UPDATE_CONSOLE_SQL =
+    private static final String UPDATE_POST_SQL =
             "update post set post_date=?, poster_name=?, post=?, post_id=?";
 
-    private static final String DELETE_CONSOLE_SQL =
+    private static final String DELETE_POST_SQL =
             "delete from post where post_id=?";
+
+    private static final String SELECT_POSTS_BY_NAME_SQL =
+            "select * from post where poster_name=?";
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -36,7 +39,7 @@ public class PostDaoJdbcTemplate implements PostDao{
     @Override
     public Post addPost(Post post) {
 
-        jdbcTemplate.update(INSERT_CONSOLE_SQL,
+        jdbcTemplate.update(INSERT_POST_SQL,
                 post.getPostDate(),
                 post.getPosterName(),
                 post.getPost());
@@ -52,7 +55,7 @@ public class PostDaoJdbcTemplate implements PostDao{
     public Post getPost(int id) {
 
         try {
-            return jdbcTemplate.queryForObject(SELECT_CONSOLE_SQL, this::mapRowToPost, id);
+            return jdbcTemplate.queryForObject(SELECT_POST_SQL, this::mapRowToPost, id);
         }catch (EmptyResultDataAccessException e){
             return null;
         }
@@ -62,14 +65,19 @@ public class PostDaoJdbcTemplate implements PostDao{
     @Override
     public List<Post> getAllPosts() {
 
-        return jdbcTemplate.query(SELECT_ALL_CONSOLES_SQL, this::mapRowToPost);
+        return jdbcTemplate.query(SELECT_ALL_POSTS_SQL, this::mapRowToPost);
 
+    }
+
+    @Override
+    public List<Post> getPostByPoster(String poster_name){
+        return jdbcTemplate.query(SELECT_POSTS_BY_NAME_SQL, this::mapRowToPost, poster_name);
     }
 
     @Override
     public void updatePost(Post post) {
 
-        jdbcTemplate.update(UPDATE_CONSOLE_SQL,
+        jdbcTemplate.update(UPDATE_POST_SQL,
                 post.getPostDate(),
                 post.getPosterName(),
                 post.getPost(),
@@ -78,7 +86,7 @@ public class PostDaoJdbcTemplate implements PostDao{
 
     @Override
     public void deletePost(int id) {
-        jdbcTemplate.update(DELETE_CONSOLE_SQL, id);
+        jdbcTemplate.update(DELETE_POST_SQL, id);
     }
 
     private Post mapRowToPost(ResultSet rs, int rowNum) throws SQLException {
@@ -86,7 +94,7 @@ public class PostDaoJdbcTemplate implements PostDao{
 
         post.setPostID(rs.getInt("post_id"));
         post.setPostDate(rs.getDate("post_date").toLocalDate());
-        post.setPosterName(rs.getString("post_name"));
+        post.setPosterName(rs.getString("poster_name"));
         post.setPost(rs.getString("post"));
 
         return post;
