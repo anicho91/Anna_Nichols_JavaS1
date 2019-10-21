@@ -60,6 +60,7 @@ public class ServiceLayerTest {
         comments.add(comment);
 
         pvm.setComments(comments);
+        pvm.setPostId(1);
 
         service.addPostVm(pvm);
 
@@ -87,6 +88,8 @@ public class ServiceLayerTest {
         comments.add(comment);
 
         pvm.setComments(comments);
+
+//        service.addPostVm(pvm);
 
 
         assertEquals(pvm, service.getPostVm(1));
