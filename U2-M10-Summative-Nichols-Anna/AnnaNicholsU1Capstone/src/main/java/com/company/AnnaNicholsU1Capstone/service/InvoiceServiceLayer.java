@@ -1,9 +1,7 @@
 package com.company.AnnaNicholsU1Capstone.service;
 
 import com.company.AnnaNicholsU1Capstone.dao.*;
-import com.company.AnnaNicholsU1Capstone.dto.Invoice;
-import com.company.AnnaNicholsU1Capstone.dto.ProcessingFee;
-import com.company.AnnaNicholsU1Capstone.dto.SalesTaxRate;
+import com.company.AnnaNicholsU1Capstone.dto.*;
 import com.company.AnnaNicholsU1Capstone.viewmodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,22 +20,25 @@ public class InvoiceServiceLayer implements InvoiceViewDao {
     private GameViewModel gameViewModel;
     private ProcessingFeeViewModel processingFeeViewModel;
     private SalesTaxRateViewModel salesTaxRateViewModel;
-    private ConsoleViewDao consoleViewDao;
+    private ConsoleDao consoleDao;
     private InvoiceViewDao invoiceViewDao;
-    private GameViewDao gameViewDao;
-    private TShirtViewDao tShirtViewDao;
+    private GameDao gameDao;
+    private TShirtDao tShirtDao;
     private SalesTaxRateDao salesTaxRateDao;
     private SalesTaxRate salesTaxRate;
+    private Console console;
+    private Game game;
+    private TShirt tShirt;
 
     @Autowired
-    public InvoiceServiceLayer(InvoiceDaoJdbcTemplateImpl iDJT, GameViewDao gameViewDao, ConsoleViewDao consoleViewDao, TShirtViewDao tShirtViewDao) {
+    public InvoiceServiceLayer(InvoiceDaoJdbcTemplateImpl iDJT, GameDao gameDao, ConsoleDao consoleDao, TShirtDao tShirtDao) {
         this.iDJT = iDJT;
-        this.consoleViewDao = consoleViewDao;
-        this.gameViewDao = gameViewDao;
-        this.tShirtViewDao = tShirtViewDao;
+        this.consoleDao = consoleDao;
+        this.gameDao = gameDao;
+        this.tShirtDao = tShirtDao;
     }
 
-
+    @Override
     public InvoiceViewModel addInvoiceVm(InvoiceViewModel invoiceViewModel) {
         Invoice invoice = new Invoice();
         invoice.setName(invoiceViewModel.getName());
@@ -76,24 +77,24 @@ public class InvoiceServiceLayer implements InvoiceViewDao {
 
         if (findItem.equalsIgnoreCase("TShirt")){
 
-            List<TShirtViewModel> tshirts = tShirtViewDao.getAllTShirtsVm();
+            List<TShirt> tshirts = tShirtDao.getAllTShirts();
 
             tshirts.stream()
-                    .forEach(tvm ->
+                    .forEach(tShirt ->
                     {
-                        tvm.setId(invoiceViewModel.getItemId());
+                        tShirt.setId(invoiceViewModel.getItemId());
 
 
                     });
 
-            if(tShirtViewModel.getQuantity().compareTo(invoiceQuantity)>0) {
-                invoice.setUnitPrice(tShirtViewDao.getTShirtVm(invoice.getItemId()).getPrice());
+            if(tShirt.getQuantity().compareTo(invoiceQuantity)>0) {
+                invoice.setUnitPrice(tShirtDao.getTShirt(invoice.getItemId()).getPrice());
 
                 BigDecimal unitPrice = invoice.getUnitPrice();
                 BigDecimal quantity = new BigDecimal(invoice.getQuantity());
 
-                BigDecimal newQuantity = tShirtViewDao.getTShirtVm(invoice.getItemId()).getQuantity().subtract(invoiceQuantity);
-                tShirtViewDao.getTShirtVm(invoice.getItemId()).setQuantity(newQuantity);
+                BigDecimal newQuantity = tShirtDao.getTShirt(invoice.getItemId()).getQuantity().subtract(invoiceQuantity);
+                tShirtDao.getTShirt(invoice.getItemId()).setQuantity(newQuantity);
 
                 invoice.setSubtotal(unitPrice.multiply(quantity));
 
@@ -120,24 +121,24 @@ public class InvoiceServiceLayer implements InvoiceViewDao {
 
         }else if(findItem.equalsIgnoreCase("Console")){
 
-            List<ConsoleViewModel> consoles = consoleViewDao.getAllConsolesVm();
+            List<Console> consoles = consoleDao.getAllConsoles();
 
             consoles.stream()
-                    .forEach(cvm ->
+                    .forEach(console ->
                     {
-                        cvm.setId(invoiceViewModel.getItemId());
+                        console.setId(invoiceViewModel.getItemId());
 
                     });
 
-            if(consoleViewModel.getQuantity().compareTo(invoiceQuantity)>0) {
+            if(consoleDao.getConsole(invoiceViewModel.getItemId()).getQuantity().compareTo(invoiceQuantity)>0) {
 
-                invoice.setUnitPrice(consoleViewDao.getConsoleVm(invoice.getItemId()).getPrice());
+                invoice.setUnitPrice(consoleDao.getConsole(invoice.getItemId()).getPrice());
 
                 BigDecimal unitPrice = invoice.getUnitPrice();
                 BigDecimal quantity = new BigDecimal(invoice.getQuantity());
 
-                BigDecimal newQuantity = consoleViewDao.getConsoleVm(invoice.getItemId()).getQuantity().subtract(invoiceQuantity);
-                consoleViewDao.getConsoleVm(invoice.getItemId()).setQuantity(newQuantity);
+                BigDecimal newQuantity = consoleDao.getConsole(invoice.getItemId()).getQuantity().subtract(invoiceQuantity);
+                consoleDao.getConsole(invoice.getItemId()).setQuantity(newQuantity);
 
                 invoice.setSubtotal(unitPrice.multiply(quantity));
 
@@ -162,24 +163,23 @@ public class InvoiceServiceLayer implements InvoiceViewDao {
             }
         }else if(findItem.equalsIgnoreCase("Game")){
 
-            List<GameViewModel> games = gameViewDao.getAllGamesVm();
+            List<Game> games = gameDao.getAllGames();
 
             games.stream()
-                    .forEach(gvm ->
+                    .forEach(game ->
                     {
-                        gvm.setId(invoiceViewModel.getItemId());
-
+                        game.setId(invoiceViewModel.getItemId());
 
                     });
 
-            if(gameViewDao.getGameVm(invoice.getItemId()).getQuantity().compareTo(invoiceQuantity)>0) {
-                invoice.setUnitPrice(gameViewDao.getGameVm(invoice.getItemId()).getPrice());
+            if(gameDao.getGame(invoice.getItemId()).getQuantity().compareTo(invoiceQuantity)>0) {
+                invoice.setUnitPrice(gameDao.getGame(invoice.getItemId()).getPrice());
 
                 BigDecimal unitPrice = invoice.getUnitPrice();
                 BigDecimal quantity = new BigDecimal(invoice.getQuantity());
 
-                BigDecimal newQuantity = gameViewDao.getGameVm(invoice.getItemId()).getQuantity().subtract(invoiceQuantity);
-                gameViewDao.getGameVm(invoice.getItemId()).setQuantity(newQuantity);
+                BigDecimal newQuantity = gameDao.getGame(invoice.getItemId()).getQuantity().subtract(invoiceQuantity);
+                gameDao.getGame(invoice.getItemId()).setQuantity(newQuantity);
 
                 invoice.setSubtotal(unitPrice.multiply(quantity));
 
@@ -229,7 +229,7 @@ public class InvoiceServiceLayer implements InvoiceViewDao {
     @Override
     public void deleteInvoiceVm(int invoiceId) {
 
-        invoiceViewDao.deleteInvoiceVm(invoiceId);
+        invoiceDao.deleteInvoice(invoiceId);
     }
 
     private InvoiceViewModel buildInvoiceViewModel(Invoice invoice){

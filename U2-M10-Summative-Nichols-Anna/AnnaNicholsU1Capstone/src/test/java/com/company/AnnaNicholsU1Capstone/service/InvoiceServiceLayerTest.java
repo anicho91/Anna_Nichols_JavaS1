@@ -1,12 +1,18 @@
 package com.company.AnnaNicholsU1Capstone.service;
 
 import com.company.AnnaNicholsU1Capstone.dao.*;
+import com.company.AnnaNicholsU1Capstone.dto.Console;
+import com.company.AnnaNicholsU1Capstone.dto.Game;
+import com.company.AnnaNicholsU1Capstone.dto.Invoice;
+import com.company.AnnaNicholsU1Capstone.dto.TShirt;
 import com.company.AnnaNicholsU1Capstone.viewmodel.ConsoleViewModel;
 import com.company.AnnaNicholsU1Capstone.viewmodel.GameViewModel;
 import com.company.AnnaNicholsU1Capstone.viewmodel.InvoiceViewModel;
 import com.company.AnnaNicholsU1Capstone.viewmodel.TShirtViewModel;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -15,19 +21,21 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
+@SpringBootTest
 public class InvoiceServiceLayerTest {
 
+    @InjectMocks
     private InvoiceServiceLayer invoiceService;
     private ConsoleServiceLayer consoleService;
-    private ConsoleViewDao consoleViewDao;
-    private InvoiceViewDao invoiceViewDao;
-    private TShirtViewDao tShirtViewDao;
-    private GameViewDao gameViewDao;
+    private ConsoleDao consoleDao;
+    private InvoiceDao invoiceDao;
+    private TShirtDao tShirtDao;
+    private GameDao gameDao;
     private InvoiceDaoJdbcTemplateImpl invoiceDaoJdbcTemplate;
 
     private void setupInvoiceMock(){
-        invoiceViewDao = mock(InvoiceViewDao.class);
-        InvoiceViewModel invoice = new InvoiceViewModel();
+        invoiceDao = mock(InvoiceDao.class);
+        Invoice invoice = new Invoice();
         invoice.setId(1);
         invoice.setName("John");
         invoice.setStreet("13 street");
@@ -37,13 +45,13 @@ public class InvoiceServiceLayerTest {
         invoice.setItemType("Console");
         invoice.setItemId(2);
         invoice.setQuantity(3);
-        invoice.setUnitPrice(new BigDecimal("2.00"));
-        invoice.setSubtotal(new BigDecimal("6.00"));
-        invoice.setTax(new BigDecimal(".04"));
-        invoice.setProcessingFee(new BigDecimal("1.99"));
-        invoice.setTotal(new BigDecimal("15.00"));
+        invoice.setUnitPrice(new BigDecimal("500.00"));
+        invoice.setSubtotal(new BigDecimal("1500.00"));
+        invoice.setTax(new BigDecimal(".07"));
+        invoice.setProcessingFee(new BigDecimal("14.99"));
+        invoice.setTotal(new BigDecimal("1619.9900"));
 
-        InvoiceViewModel invoice2 = new InvoiceViewModel();
+        Invoice invoice2 = new Invoice();
         invoice2.setName("John");
         invoice2.setStreet("13 street");
         invoice2.setCity("Rome");
@@ -52,25 +60,25 @@ public class InvoiceServiceLayerTest {
         invoice2.setItemType("Console");
         invoice2.setItemId(2);
         invoice2.setQuantity(3);
-        invoice2.setUnitPrice(new BigDecimal("2.00"));
-        invoice2.setSubtotal(new BigDecimal("6.00"));
-        invoice2.setTax(new BigDecimal(".04"));
-        invoice2.setProcessingFee(new BigDecimal("1.99"));
-        invoice2.setTotal(new BigDecimal("15.00"));
+        invoice2.setUnitPrice(new BigDecimal("500.00"));
+        invoice2.setSubtotal(new BigDecimal("1500.00"));
+        invoice2.setTax(new BigDecimal(".07"));
+        invoice2.setProcessingFee(new BigDecimal("14.99"));
+        invoice2.setTotal(new BigDecimal("1619.9900"));
 
-        List<InvoiceViewModel> invoices = new ArrayList<>();
+        List<Invoice> invoices = new ArrayList<>();
         invoices.add(invoice);
 
-        doReturn(invoice).when(invoiceViewDao).addInvoiceVm(invoice2);
-        doReturn(invoice).when(invoiceViewDao).getInvoiceVm(1);
-        doReturn(invoices).when(invoiceViewDao).getAllInvoicesVm();
+        doReturn(invoice).when(invoiceDao).addInvoice(invoice2);
+        doReturn(invoice).when(invoiceDao).getInvoice(1);
+        doReturn(invoices).when(invoiceDao).getAllInvoices();
 
     }
 
     private void setupConsoleMock(){
-        consoleViewDao = mock(ConsoleViewDao.class);
+        consoleDao = mock(ConsoleDao.class);
 
-        ConsoleViewModel console = new ConsoleViewModel();
+        Console console = new Console();
         console.setId(2);
         console.setModel("Playstation");
         console.setManufacturer("Sony");
@@ -79,7 +87,7 @@ public class InvoiceServiceLayerTest {
         console.setPrice(new BigDecimal("500.00"));
         console.setQuantity(new BigDecimal(10));
 
-        ConsoleViewModel console2 = new ConsoleViewModel();
+        Console console2 = new Console();
         console2.setModel("Playstation");
         console2.setManufacturer("Sony");
         console2.setMemoryAmount("2TB");
@@ -87,18 +95,18 @@ public class InvoiceServiceLayerTest {
         console2.setPrice(new BigDecimal("500.00"));
         console2.setQuantity(new BigDecimal(10));
 
-        List<ConsoleViewModel> consoles = new ArrayList<>();
+        List<Console> consoles = new ArrayList<>();
         consoles.add(console);
 
-        doReturn(console).when(consoleViewDao).addConsoleVm(console2);
-        doReturn(console).when(consoleViewDao).getConsoleVm(2);
-        doReturn(consoles).when(consoleViewDao).getAllConsolesVm();
+        doReturn(console).when(consoleDao).addConsole(console2);
+        doReturn(console).when(consoleDao).getConsole(2);
+        doReturn(consoles).when(consoleDao).getAllConsoles();
     }
 
     private void setupGameMock(){
-        gameViewDao = mock(GameViewDao.class);
+        gameDao = mock(GameDao.class);
 
-        GameViewModel game = new GameViewModel();
+        Game game = new Game();
         game.setId(3);
         game.setTitle("God of War");
         game.setEsrbRating("M");
@@ -107,7 +115,7 @@ public class InvoiceServiceLayerTest {
         game.setStudio("Santa Monica");
         game.setQuantity(new BigDecimal("6"));
 
-        GameViewModel game2 = new GameViewModel();
+        Game game2 = new Game();
         game2.setTitle("God of War");
         game2.setEsrbRating("M");
         game2.setDescription("Action Adventure");
@@ -115,18 +123,18 @@ public class InvoiceServiceLayerTest {
         game2.setStudio("Santa Monica");
         game2.setQuantity(new BigDecimal("6"));
 
-        List<GameViewModel> games = new ArrayList<>();
+        List<Game> games = new ArrayList<>();
         games.add(game);
 
-        doReturn(game).when(gameViewDao).addGameVm(game2);
-        doReturn(game).when(gameViewDao).getGameVm(3);
-        doReturn(games).when(gameViewDao).getAllGamesVm();
+        doReturn(game).when(gameDao).addGame(game2);
+        doReturn(game).when(gameDao).getGame(3);
+        doReturn(games).when(gameDao).getAllGames();
     }
 
     private void setupTshirtMock(){
-        tShirtViewDao = mock(TShirtViewDao.class);
+        tShirtDao = mock(TShirtDao.class);
 
-        TShirtViewModel tshirt = new TShirtViewModel();
+        TShirt tshirt = new TShirt();
         tshirt.setId(4);
         tshirt.setSize("M");
         tshirt.setColor("Red");
@@ -134,19 +142,19 @@ public class InvoiceServiceLayerTest {
         tshirt.setPrice(new BigDecimal("10.00"));
         tshirt.setQuantity(new BigDecimal("2"));
 
-        TShirtViewModel tshirt2 = new TShirtViewModel();
+        TShirt tshirt2 = new TShirt();
         tshirt2.setSize("M");
         tshirt2.setColor("Red");
         tshirt2.setDescription("Shirt");
         tshirt2.setPrice(new BigDecimal("10.00"));
         tshirt2.setQuantity(new BigDecimal("2"));
 
-        List<TShirtViewModel> tshirts = new ArrayList<>();
+        List<TShirt> tshirts = new ArrayList<>();
         tshirts.add(tshirt);
 
-        doReturn(tshirt).when(tShirtViewDao).addTShirtVm(tshirt2);
-        doReturn(tshirt).when(tShirtViewDao).getTShirtVm(3);
-        doReturn(tshirts).when(tShirtViewDao).getAllTShirtsVm();
+        doReturn(tshirt).when(tShirtDao).addTShirt(tshirt2);
+        doReturn(tshirt).when(tShirtDao).getTShirt(3);
+        doReturn(tshirts).when(tShirtDao).getAllTShirts();
     }
 
     @Before
@@ -156,58 +164,59 @@ public class InvoiceServiceLayerTest {
         setupGameMock();
         setupTshirtMock();
 
-        invoiceService = new InvoiceServiceLayer( invoiceDaoJdbcTemplate, gameViewDao, consoleViewDao, tShirtViewDao);
-    }
-
-//    @Test
-//    public void addInvoiceVm() {
-//
-//        ConsoleViewModel console = new ConsoleViewModel();
-//        console.setId(2);
-//        console.setModel("Playstation");
-//        console.setManufacturer("Sony");
-//        console.setMemoryAmount("2TB");
-//        console.setProcessor("Intel i7-2880k");
-//        console.setPrice(new BigDecimal("500.00"));
-//        console.setQuantity(new BigDecimal(10));
-//        console = consoleService.addConsoleVm(console);
-//
-//        List<ConsoleViewModel> consoles = new ArrayList<>();
-//        consoles.add(console);
-//
-//        InvoiceViewModel ivm = new InvoiceViewModel();
-//        ivm.setId(1);
-//        ivm.setName("John");
-//        ivm.setStreet("13 street");
-//        ivm.setCity("Rome");
-//        ivm.setState("GA");
-//        ivm.setZipcode("39013");
-//        ivm.setItemType("Console");
-//        ivm.setItemId(2);
-//        ivm.setQuantity(3);
-//
-//        ivm.setUnitPrice(new BigDecimal("2.00"));
-//        ivm.setSubtotal(new BigDecimal("6.00"));
-//        ivm.setTax(new BigDecimal(".04"));
-//        ivm.setProcessingFee(new BigDecimal("1.99"));
-//        ivm.setTotal(new BigDecimal("15.00"));
-//        ivm = invoiceService.addInvoiceVm(ivm);
-//
-//        InvoiceViewModel fromService = invoiceService.getInvoiceVm(ivm.getId());
-//        assertEquals(ivm, fromService);
-//
-//        List<InvoiceViewModel> invoiceViewModels = invoiceService.getAllInvoicesVm();
-//        assertEquals(1, invoiceViewModels.size());
-//        assertEquals(ivm, invoiceViewModels.get(0));
-//
-//    }
-
-    @Test
-    public void getAllInvoicesVm() {
-
+        invoiceService = new InvoiceServiceLayer( invoiceDaoJdbcTemplate, gameDao, consoleDao, tShirtDao);
     }
 
     @Test
-    public void deleteInvoiceVm() {
+    public void addInvoice() {
+
+        InvoiceViewModel expected = new InvoiceViewModel();
+        expected.setId(0);
+        expected.setName("John");
+        expected.setStreet("13 street");
+        expected.setCity("Rome");
+        expected.setState("GA");
+        expected.setZipcode("39013");
+        expected.setItemType("Console");
+        expected.setItemId(2);
+        expected.setQuantity(3);
+
+        expected.setUnitPrice(new BigDecimal("500.00"));
+        expected.setSubtotal(new BigDecimal("1500.00"));
+        expected.setTax(new BigDecimal(".07"));
+        expected.setProcessingFee(new BigDecimal("14.99"));
+        expected.setTotal(new BigDecimal("1619.9900"));
+
+        Console console = new Console();
+        console.setId(2);
+        console.setModel("Playstation");
+        console.setManufacturer("Sony");
+        console.setMemoryAmount("2TB");
+        console.setProcessor("Intel i7-2880k");
+        console.setPrice(new BigDecimal("500.00"));
+        console.setQuantity(new BigDecimal(10));
+        List<Console> consoles = new ArrayList<>();
+        consoles.add(console);
+        consoleDao.addConsole(console);
+
+        InvoiceViewModel ivm = new InvoiceViewModel();
+        ivm.setName("John");
+        ivm.setStreet("13 street");
+        ivm.setCity("Rome");
+        ivm.setState("GA");
+        ivm.setZipcode("39013");
+        ivm.setItemType("Console");
+        ivm.setItemId(2);
+        ivm.setQuantity(3);
+
+        ivm.setUnitPrice(new BigDecimal("500.00"));
+        ivm.setSubtotal(new BigDecimal("1500.00"));
+        ivm.setTax(new BigDecimal(".07"));
+        ivm.setProcessingFee(new BigDecimal("14.99"));
+        ivm.setTotal(new BigDecimal("1619.9900"));
+        InvoiceViewModel actual = invoiceService.addInvoiceVm(ivm);
+
+        assertEquals(expected, actual);
+
     }
 }
